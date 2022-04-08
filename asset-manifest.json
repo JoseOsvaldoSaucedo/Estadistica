@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Estadistica/static/css/main.45f9d504.css",
-    "main.js": "/Estadistica/static/js/main.3d042e9f.js",
+    "main.css": "/Estadistica/static/css/main.cdf87b7e.css",
+    "main.js": "/Estadistica/static/js/main.9cea07d3.js",
     "index.html": "/Estadistica/index.html",
-    "main.45f9d504.css.map": "/Estadistica/static/css/main.45f9d504.css.map",
-    "main.3d042e9f.js.map": "/Estadistica/static/js/main.3d042e9f.js.map"
+    "main.cdf87b7e.css.map": "/Estadistica/static/css/main.cdf87b7e.css.map",
+    "main.9cea07d3.js.map": "/Estadistica/static/js/main.9cea07d3.js.map"
   },
   "entrypoints": [
-    "static/css/main.45f9d504.css",
-    "static/js/main.3d042e9f.js"
+    "static/css/main.cdf87b7e.css",
+    "static/js/main.9cea07d3.js"
   ]
 }
