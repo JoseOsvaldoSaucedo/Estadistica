@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@mixin texto($fontColor, $fontSize, $fontWeight, $fontAlign){
+    color: $fontColor;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    text-align: $fontAlign;
+}
+%row{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+}
+%column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+.App{
+    background-color: #141414;
+    min-height: 100vh;
+    @extend %column;
+    align-items: flex-start;
+    padding: 30px;
+    justify-content: space-evenly;
+    position: relative;
+
+    @media only screen and (max-width: 1025px) {
+        justify-content: flex-start;
+        gap: 100px;
+        align-items: center;
+        height: auto;
+    }
+}
+h1{@include texto(white, 3rem, bold, left);  
+    @media only screen and (max-width: 1025px) {
+   text-align: center;
+   margin-top: 100px;
+} }
+h2{@include texto(rgb(166, 166, 166), 1.5rem, 400, left);
+    @media only screen and (max-width: 1025px) {
+        text-align: center;
+    }
+}
+label{@include texto(white, 1rem, normal, left)}
+.contenedorInputs{@extend %column; align-items: flex-start;}
+input{
+    padding: 6px 12px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    &:focus{
+        outline: none;
+    }
+}
+button{
+    background: #09f;
+    color: #fff;
+    height: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+    transition: all .3s ease;
+
+    &:hover{
+        opacity: 0.8;
+    }
+    &:active{
+        transform: scale(0.8);
+    }
+}
+.contenedor{
+    @extend %row;
+    gap: 100px;
+    @media only screen and (max-width: 1025px) {
+        flex-direction: column;
+    }
+}
+.contenedorResultado{
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 6px;
+    animation: slide 0.5s;
+    
+    h1{
+        font-size: 1.5rem;
+        color: #09f;
+        margin-top: 0;
+    }
+    p{
+        font-size: 1.2rem;
+        color: rgb(0, 0, 0);
+        @media only screen and (max-width: 1025px) {
+            text-align: center;
+        }
+    }
+}
+@keyframes slide{
+    from{
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+aside{
+    height: 100vh;
+    width: auto;
+    background: #505050;
+    position: absolute;
+    right: 0;
+    padding: 20px;
+    @media only screen and  (max-width: 1025px) {
+        height: auto;
+        width: 100%;
+        // bottom: 0;
+        position: relative;
+        border-radius: 20px;
+      }
+    h1{
+        font-size: 2rem;
+        margin-bottom: 20px;
+        margin-top: 0;
+    }
+    li{
+        list-style: none;
+        color: #fff;
+        margin-bottom: 5px;
+        @media only screen and (max-width: 1025px) {
+text-align: center;
+        }
+    }
+}
