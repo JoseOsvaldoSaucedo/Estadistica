@@ -4,7 +4,9 @@ import Resultado from './Resultado';
 function App() {
 
   const [result, setResult ] = useState("");
-
+  //Esta es una funcion, lo que hace es recolectar todos los datos de los campos de texto
+  //Y asignarlos a variables, para poder guardar los valores
+  //Y al final ejecutar otra funcion, que tiene como parametros los valores recolectados
   const calcularIC = () => {
     var muestraN_input = document.getElementById('muestraN');
     var media_input = document.getElementById('media');
@@ -15,26 +17,33 @@ function App() {
     var media = media_input.value;
     var desviacion = desviacion_input.value;
     var nivelConfianza = nivelConfianza_input.value;
+    //esta es la funcion que ejecuta con los parametros, que en este caso son los valores introducidos
     resultadoIC(muestraN, media, desviacion, nivelConfianza)
-    // return formulaIC();
   }
-
+//Esta es la funcion de antes, lo que hace es obtener los valores que se introdujeron y operar con ellos
   const resultadoIC = (sizeMuestra, media, desviacionE, nivelConfianza) => {
+    //Se declara la variable del coeficiente de confianza, pero como aun no es necesaria se le da el valor de 0
     var coeficienteConfianza = 0;
-
+    //En caso de que no haya valor para la desviacion estandar, se manda un mensaje en consola avisando de que no hay
+    //Y con otros valores se saca la la desviacion para poder seguir con los calculos
     if(!desviacionE){
       console.log('no hay desviacion estandar');
       desviacionE = Math.sqrt(((media * sizeMuestra) - media)  )
 
     }
-
+    //Esta es una estructura condicional y toma como parametro el nivel de confianza introducido, como no es posible sacar este valor
+    //Sin la tabla z, se hace lo siguiente
+    
     switch (nivelConfianza) {
+        //En caso de que el nivel de confianza sea de 0.99, el coeficiente de confianza sera igual a 2.5758
       case '0.99':
         coeficienteConfianza = 2.5758;
         break;
+        //En caso de que el nivel de confianza sea de 0.98, el coeficiente de confianza sera igual a 2.3263
       case '0.98':
         coeficienteConfianza = 2.3263;
         break;
+        //En caso de que el nivel de confianza sea de 0.97, el coeficiente de confianza sera igual a 2.1701 y asi hasta llegar al 0.9 o 0.90
       case '0.97':
         coeficienteConfianza = 2.1701;
         break;
@@ -66,13 +75,20 @@ function App() {
       default:
         break;
     }
+    
+    //Los valores que se introdujeron, se obtienen como texto, por lo cual no se puede operar con estos valores, asi que 
+    //Lo que hacemos es esos valores, es convertirlos a decimales, para ahora si poder operar con ellos
     var int_media = parseFloat(media);
     var int_coeficienteConfianza = parseFloat(coeficienteConfianza);
     var int_desviacionE = parseFloat(desviacionE);
     var int_sizeMuestra = parseFloat(sizeMuestra)
 
+    //En caso de que algun valor no se encuentre, se mostrara en un cuadro el mensaje de 'Introduce todos los campos'
     if(!int_media || !int_coeficienteConfianza || !int_desviacionE || !int_sizeMuestra){
       setResult('Introduce todos los campos')
+      //En caso de que si esten todos los valores se haran las dos operaciones ppara poder sacar el intervalo de confianza
+      //Esas dos operaciones se guardan como texto para poder introducir la letra 'a' en medio e indicar de que intervalo a que intervalo llega
+      //Ese valor o texto, se guarda en la variable intervaloConfianza y se introduce dentro del cuadro de texto
     }else{
       var intervaloConfianza = `${int_media -  int_coeficienteConfianza * (int_desviacionE / Math.sqrt(int_sizeMuestra))} a ${int_media + int_coeficienteConfianza * (int_desviacionE / Math.sqrt(int_sizeMuestra))}`
       setResult(intervaloConfianza)
@@ -80,6 +96,7 @@ function App() {
 
   }
 
+  //Apartir de aquí esto es solo para crear la interfaz de la pagina web
   return (
     <div className="App">
       <div>
@@ -97,8 +114,10 @@ function App() {
           <input id='desviacion' type="text" />
           <label htmlFor="">Nivel de confianza (a)</label>
           <input id='nivelConfianza' type="text" />
+            //Este boton ejecuta toda la funcion anterior
           <button onClick={calcularIC}>Calcular</button>
         </div>
+  //En caso de que la variable resultado tenga un valor, se mostrara el resultado con los valores obtenidos, caso contrario no aparece el cuadro
     {result  ? <Resultado resultado = {result  ? result : "Introduce los datos solicitados"}/> : null}
       </div>
       <aside>
