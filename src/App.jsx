@@ -114,10 +114,10 @@ function App() {
           <input id='desviacion' type="text" />
           <label htmlFor="">Nivel de confianza (a)</label>
           <input id='nivelConfianza' type="text" />
-            //Este boton ejecuta toda la funcion anterior
+            <!--Este boton ejecuta toda la funcion anterior-->
           <button onClick={calcularIC}>Calcular</button>
         </div>
-  //En caso de que la variable resultado tenga un valor, se mostrara el resultado con los valores obtenidos, caso contrario no aparece el cuadro
+  <!--En caso de que la variable resultado tenga un valor, se mostrara el resultado con los valores obtenidos, caso contrario no aparece el cuadro-->
     {result  ? <Resultado resultado = {result  ? result : "Introduce los datos solicitados"}/> : null}
       </div>
       <aside>
